@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SocialHabits.views.HabitDetailPage">
@@ -6,23 +7,39 @@
     <ContentPage.Content>
         <StackLayout Padding="10" Spacing="10">
 
-            <Entry Text="{Binding Habit.Name}" />
-            <Editor Text="{Binding Habit.Description}" />
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Name: " />
+                <Entry Text="{Binding Habit.Name}" />
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Duration: " />
+                <Entry Text="{Binding Habit.Duration}" />
+            </StackLayout>
+
+
             <!--a progress bar for the habit-->
             <StackLayout HorizontalOptions="FillAndExpand"
                          Orientation="Horizontal"
                          Padding="10"
-                         VerticalOptions="CenterAndExpand">
+                         VerticalOptions="CenterAndExpand"
+                         Spacing="10">
 
                 <ProgressBar HorizontalOptions="StartAndExpand"
                              x:Name="ProgressBar"
                              Progress="{Binding Habit.PercentComplete,Mode=OneWay}" />
 
-                <!-- <Label HorizontalOptions="FillAndExpand"
-                       Text="{x:Reference ProgressBar, StringFormat= {}{0:0.0%} completed } "
-                       TextColor="#272832" />-->
+                <Label HorizontalOptions="FillAndExpand"
+                       Text="{Binding Habit.PercentComplete, StringFormat= {}{0:0.0%} completed } "
+                       TextColor="#272832" />
+
+                <Label HorizontalOptions="FillAndExpand"
+                       Text="{Binding Habit.DaysLeft, StringFormat= {}{0} days left } "
+                       TextColor="#272832" />
             </StackLayout>
             <!--end progress bar-->
+            
             <StackLayout VerticalOptions="CenterAndExpand" />
             <StackLayout Orientation="Vertical" VerticalOptions="End">
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
@@ -36,10 +53,6 @@
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-
-
-
-
 
 
 </ContentPage>

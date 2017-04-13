@@ -20,6 +20,7 @@ Properties
 Resources
 project.*
 package.*
+*.config
 SocialHabits.UWP_TemporaryKey.pfx
 SocialHabits.UWP.nuget.targets
 Components
