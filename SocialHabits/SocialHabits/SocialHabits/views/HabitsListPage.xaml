@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SocialHabits.viewModels;assembly=SocialHabits"
+             x:Class="SocialHabits.views.HabitsListPage"
+             Title ="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <viewModels:HabitsListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Text="Logout"
+                     Command="{Binding LogoutCommand}"
+                     Order="Primary"
+                     Priority="0" />
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView 
+                BackgroundColor="#7F7F7F"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                ItemsSource="{Binding Habits}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RowHeight="50"
+                SelectedItem="{Binding SelectedHabit, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal"
+                                         Padding="10"
+                                         VerticalOptions="CenterAndExpand">
+
+                                <Label HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Name}"
+                                       TextColor="#272832" />
+
+                                <Label HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Name}"
+                                       TextColor="#272832" />
+
+
+                                <!--a progress bar for the habit-->
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal"
+                                         Padding="10"
+                                         VerticalOptions="CenterAndExpand">
+
+                                    <ProgressBar HorizontalOptions="StartAndExpand"
+                                                 x:Name="ProgressBar"
+                                                 Progress="{Binding PercentComplete,Mode=OneWay}"/>
+
+                                    <!--<Label HorizontalOptions="FillAndExpand"
+                                           Text="{x:Reference ProgressBar, StringFormat= {}{0:0.0%} completed } "
+                                           TextColor="#272832" />-->
+
+                                </StackLayout>
+
+                                <StackLayout/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout HorizontalOptions="Center"
+                   Orientation="Horizontal">
+                <Button BackgroundColor="Teal"
+                Command="{Binding AddNewHabitCommand}"
+                Text="Add New Item"
+                TextColor="White" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+
+</ContentPage>
+
+
